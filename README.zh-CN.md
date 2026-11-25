@@ -6,8 +6,7 @@
 </p>
 
 <p align="center">
-  <strong>2026 MCM/ICM · C 题 · Finalist</strong><br>
-  Team #2619541
+  <strong>2026 MCM/ICM · C 题 · Finalist</strong>
 </p>
 
 <p align="center">
@@ -177,8 +176,8 @@ PAGS 压缩极端票份额优势，随赛程推进提高技术评分的权重，
 ## 引用
 
 ```bibtex
-@misc{team2619541_2026_pags,
-  author       = {{MCM/ICM 2026 Team 2619541}},
+@misc{pags2026,
+  author       = {{MCM/ICM 2026 Team}},
   title        = {{PAGS}: Auditing {DWTS} Voting Aggregation Rules via
                   Inverse Reconstruction and Counterfactual Simulation},
   year         = {2026},

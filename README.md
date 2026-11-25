@@ -5,8 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>2026 MCM/ICM · Problem C · Finalist</strong><br>
-  Team #2619541
+  <strong>2026 MCM/ICM · Problem C · Finalist</strong>
 </p>
 
 <p align="center">
@@ -176,8 +175,8 @@ PAGS compresses extreme vote concentration, increases the weight of technical ju
 ## Citation
 
 ```bibtex
-@misc{team2619541_2026_pags,
-  author       = {{MCM/ICM 2026 Team 2619541}},
+@misc{pags2026,
+  author       = {{MCM/ICM 2026 Team}},
   title        = {{PAGS}: Auditing {DWTS} Voting Aggregation Rules via
                   Inverse Reconstruction and Counterfactual Simulation},
   year         = {2026},
