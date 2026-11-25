@@ -1,0 +1,239 @@
+% ============================================================
+% Q4: Optimization / Proposal (Replaces Problem 4)
+% ============================================================
+\section{The PAGS Architecture – An Optimized Elimination Mechanism  }
+\label{sec:q4}
+
+% [新增] 任务对应说明
+\noindent \textit{This section addresses Task 4 by proposing the "PAGS" architecture—an optimized elimination mechanism derived from the fairness metrics established in Models II and III to reconcile meritocratic integrity with audience agency.}
+
+\vspace{1em}
+
+\subsection{Optimization Objectives for Meritocracy and Agency }
+\label{sec:q4_analysis}
+
+It is required to propose an alternative weekly elimination mechanism that uses only judges' scores and fan votes, and to provide evidence that the proposed mechanism should be adopted. According to the conventions established in Problems 1--3, admissible weekly inputs are restricted to: (i) the observed dynamic mean judge score $J_{i,s,t}$ (field \texttt{wt\_avg}) and its share within the week $p_{i,s,t}(J)$; and (ii) the latent fan-support simplex represented exclusively through the posterior samples $\{v^{(m)}_{s,t}\}_{m=1}^{M}$ inferred in Q1, with $M=2000$. Any substitution of $\{v^{(m)}_{s,t}\}$ by a point estimate is prohibited, because the elimination mapping can be discontinuous and the uncertainty must be propagated by construction.
+
+The design objective is formalized as a \emph{multi-objective optimization} problem. A structural tension exists between \emph{meritocratic alignment} (technical credibility measured by the judge channel) and \emph{audience agency} (the degree to which fan votes remain outcome-determinative). The target is not a binary notion of ``fairness,'' but a \emph{tunable trade-off mechanism} whose parameters can be audited and adjusted to satisfy explicit constraints on both professionalism and agency.
+
+\subsection{The PAGS Parametric Hybrid Framework Design }
+\label{sec:q4_model}
+
+A new elimination system, termed \textbf{PAGS (Professional--Adaptive Guard System)}, is defined as a modular architecture with three components: (A) an \emph{adaptive damping} module (the $\lambda$-mechanism) that mitigates block-voting anomalies under statistically verifiable technical collapse; (B) \emph{dynamic phased weighting} that smoothly transitions from engagement-oriented aggregation to reputation-oriented aggregation as the competition advances; and (C) a \emph{minimal-intervention guardrail} that activates only under narrowly defined violations of meritocratic alignment.
+
+\subsubsection{Modular Definition of PAGS}
+\label{sec:q4_modules}
+
+
+\noindent\textbf{Module A: Adaptive Damping (the $\lambda$-Mechanism).}\phantomsection\label{sec:q4_gamma}
+
+
+For each posterior sample $v^{(m)}_{s,t}$, an effective damped fan-share vector $\tilde v^{(m)}_{s,t}$ is defined by a power transform followed by simplex renormalization:
+\begin{equation}
+\tilde v_{i,s,t}^{(m)}(\lambda_{s,t})
+=
+\frac{\bigl(v_{i,s,t}^{(m)}\bigr)^{\lambda_{s,t}}}{\sum_{k\in C_{s,t}}\bigl(v_{k,s,t}^{(m)}\bigr)^{\lambda_{s,t}}},
+\qquad 
+\lambda_{s,t}\in[\lambda_{\min},1].
+\label{eq:q4_damped_votes}
+\end{equation}
+When $\lambda_{s,t}=1$, the mechanism reduces to the base fan shares. When $\lambda_{s,t}<1$, head shares are compressed and tail shares are relatively elevated, thus mitigating extreme vote dominance while preserving ordinal information in typical weeks.
+
+The damping intensity is activated exclusively by \emph{technical outliers}. Let $\bar J_{s,t}$ and $\sigma_{J,s,t}$ denote the mean and standard deviation within-weeks of $\{J_{i,s,t}:i\in C_{s,t}\}$. The technical outlier score is defined as a $z$-score
+\begin{equation}
+z_{i,s,t}=\frac{J_{i,s,t}-\bar J_{s,t}}{\sigma_{J,s,t}},
+\qquad 
+\delta_{s,t}=\max_{i\in C_{s,t}}\{0,-z_{i,s,t}\},
+\label{eq:q4_zscore}
+\end{equation}
+and the damping coefficient is defined by a clipped linear response:
+\begin{equation}
+\lambda_{s,t}=\mathrm{clip}\!\left(1-\xi\cdot \min(\delta_{s,t},\delta_{\max}),\ \lambda_{\min},\ 1\right).
+\label{eq:q4_gamma_def}
+\end{equation}
+The above formulation enforces a circuit-breaker effect only when a statistically detectable collapse in technical performance occurs, rather than during ordinary popularity fluctuations.
+
+\medskip
+\noindent\textbf{Module B: Dynamic Phased Weighting.}\phantomsection\label{sec:q4_weight}
+
+To avoid rank-induced discontinuities, PAGS adopts a percent-style continuous composite. Let $n_{s,t}=|C_{s,t}|$ denote the number of remaining contestants in week $(s,t)$, with $n_{s,1}$ the initial cast size and $n_{\min}$ a final threshold (e.g. $n_{\min}=3$). The weight of the judge $w_{s,t}$ is defined as not decreasing as the season progresses:
+\begin{equation}
+w_{s,t}
+=
+w_{\min}
++
+(w_{\max}-w_{\min})
+\cdot
+\frac{n_{s,1}-n_{s,t}}{n_{s,1}-n_{\min}},
+\qquad 0<w_{\min}<w_{\max}<1.
+\label{eq:q4_weight_schedule}
+\end{equation}
+This definition yields a smooth transition from participation-oriented aggregation in the early weeks to reputation-oriented aggregation in the late weeks.
+
+\medskip
+\noindent\textbf{Module C: Composite Score and Elimination Operator.}\phantomsection\label{sec:q4_score}
+
+The observed weekly judge score $J_{i,s,t}$ is defined as the arithmetic mean over the active judging panel in week $(s,t)$:
+\begin{equation}
+J_{i,s,t}
+=
+\frac{1}{|\mathcal{G}_{i,s,t}|}\sum_{g\in \mathcal{G}_{i,s,t}} S_{i,s,t,g},
+\qquad 
+\mathcal{G}_{i,s,t}\subseteq \mathcal{G}_{s,t},
+\quad 
+N_{\mathrm{judges},s,t}=|\mathcal{G}_{s,t}|\in\{2,3,4\},
+\label{eq:q4_Javg}
+\end{equation}
+
+where $S_{i,s,t,g}$ denotes the score assigned by judge $g$ and $\mathcal{G}_{i,s,t}$ collects the non-missing judges for contestant $i$ in that week. This mean-score construction stabilizes the score scale across weeks with varying panel sizes and missingness patterns.
+
+The admissible judge share is defined via within-week simplex normalization:
+\begin{equation}
+p_{i,s,t}(J)=\frac{J_{i,s,t}}{\sum_{k\in C_{s,t}} J_{k,s,t}},
+\qquad 
+N_{\mathrm{judges},s,t}\in\{2,3,4\}.
+\label{eq:q4_jshare}
+\end{equation}
+
+For each posterior draw $m$, the PAGS composite score is defined by
+\begin{equation}
+S_{i,s,t}^{(m)}
+=
+w_{s,t}\,p_{i,s,t}(J)
++
+(1-w_{s,t})\,\tilde v_{i,s,t}^{(m)}(\lambda_{s,t}),
+\qquad i\in C_{s,t}.
+\label{eq:q4_composite}
+\end{equation}
+Let $m_{s,t}=|E_{s,t}|$ denote the observed number of eliminations in week $(s,t)$. The counterfactual PAGS elimination set under draw $m$ is defined as
+\begin{equation}
+E_{s,t}^{\mathrm{PAGS}}\!\bigl(v^{(m)}_{s,t}\bigr)
+=
+\mathrm{Bottom}_{m_{s,t}}
+\Bigl\{
+S_{i,s,t}^{(m)}: i\in C_{s,t}
+\Bigr\},
+\label{eq:q4_elimset}
+\end{equation}
+where $\mathrm{Bottom}_{m}(\cdot)$ returns the index set of the $m$ smallest entries (with deterministic tie-breaking as declared globally).
+
+\subsubsection{The Minimal Intervention Guardrail Constraint }
+\label{sec:q4_guardrail}
+
+In reputation-sensitive late stages, a minimal guardrail is imposed to prevent the elimination of top technical performers. Define the technical top set
+\begin{equation}
+T_{s,t}^{K}
+=
+\mathrm{Top}_{K}\{p_{i,s,t}(J): i\in C_{s,t}\}.
+\label{eq:q4_topk}
+\end{equation}
+Let $\hat E_{s,t}$ denote the baseline elimination set predicted by \eqref{eq:q4_elimset}. If $\hat E_{s,t}\cap T_{s,t}^{K}\neq\varnothing$, then each eliminated contestant in $\hat E_{s,t}\cap T_{s,t}^{K}$ is iteratively replaced by the next-lowest nonprotected contestant until $\hat E_{s,t}\cap T_{s,t}^{K}=\varnothing$. This constraint is explicitly auditable and adheres to the minimal-intervention principle: it activates only under a narrow, pre-specified violation of meritocratic alignment.
+
+\subsection{Counterfactual Historical Simulation Evaluation }
+\label{sec:q4_eval}
+
+For each elimination week $(s,t)$, we propagate posterior draws $\{v^{(m)}_{s,t}\}_{m=1}^{M}$ through the PAGS mapping: compute $\lambda_{s,t}$ via \eqref{eq:q4_gamma_def}, obtain $\tilde v^{(m)}_{s,t}$ via \eqref{eq:q4_damped_votes}, compute $S^{(m)}_{i,s,t}$ via \eqref{eq:q4_composite}, and derive $E_{s,t}^{\mathrm{PAGS}}(v^{(m)}_{s,t})$ via \eqref{eq:q4_elimset}. Any statistic $g(\cdot)$ is estimated by Monte Carlo averaging:
+
+\begin{equation}
+\widehat g
+=
+\frac{1}{M}\sum_{m=1}^{M}
+g\!\left(v^{(m)}_{s,t}\right),
+\qquad M=2000.
+\label{eq:q4_mc}
+\end{equation}
+
+We evaluate PAGS along three axes—\emph{Professionalism} ($P$), \emph{Agency} ($A$), and \emph{Drama} ($D$)—to capture distinct design objectives. Define judge-only and fan-only elimination sets:
+
+\begin{equation}
+E_{s,t}^{J}
+=
+\mathrm{Bottom}_{m_{s,t}}\{p_{i,s,t}(J)\},
+\qquad
+E_{s,t}^{F}\!\bigl(v^{(m)}_{s,t}\bigr)
+=
+\mathrm{Bottom}_{m_{s,t}}\{v_{i,s,t}^{(m)}\}.
+\label{eq:q4_extremes}
+\end{equation}
+With $E_{s,t}^{\mathrm{PAGS}}(v^{(m)}_{s,t})$ given by \eqref{eq:q4_elimset}, we define
+\begin{equation}
+P_{s,t}
+=
+\frac{1}{M}\sum_{m=1}^{M}
+\mathbf{1}\!\left\{
+E_{s,t}^{\mathrm{PAGS}}\!\bigl(v^{(m)}_{s,t}\bigr)=E_{s,t}^{J}
+\right\},
+\qquad
+A_{s,t}=1-P_{s,t},
+\label{eq:q4_P_A}
+\end{equation}
+\begin{equation}
+D_{s,t}
+=
+\frac{1}{M}\sum_{m=1}^{M}
+\mathbf{1}\!\left\{
+E_{s,t}^{\mathrm{PAGS}}\!\bigl(v^{(m)}_{s,t}\bigr)\neq E_{s,t}^{J}
+\ \land\
+E_{s,t}^{\mathrm{PAGS}}\!\bigl(v^{(m)}_{s,t}\bigr)\neq E_{s,t}^{F}\!\bigl(v^{(m)}_{s,t}\bigr)
+\right\}.
+\label{eq:q4_D}
+\end{equation}
+Cross-season summaries are stratified by historical regime to avoid conflating era effects with mechanism parameters.
+
+Let $\theta=(w_{\min},w_{\max},\xi,\lambda_{\min},K,L)$ denote tunable parameters. We perform a finite grid search, prioritizing configurations that increase mean professionalism $\bar P$ subject to $\bar A\ge 0.5$. Table~\ref{tab:q4_pad} summarizes the resulting trade-off: compared with the percent baseline, $\bar P$ increases from $0.419$ to $0.497$, $\bar A$ remains at $0.503$, and $\bar D$ rises from $0.234$ to $0.253$, suggesting that stronger merit alignment need not mechanically reduce suspense under posterior uncertainty.
+
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Aggregate P--A--D comparison under counterfactual simulation.} Professionalism ($P$), Agency ($A$), and Drama ($D$) are averaged across elimination weeks using posterior propagation with $M=2000$.}
+\label{tab:q4_pad}
+\begin{tabular}{lccc}
+\toprule
+Mechanism & $\bar P$ & $\bar A$ & $\bar D$ \\
+\midrule
+Percent baseline & $0.419$ & \textbf{0.583}& $0.234$ \\
+PAGS (proposed) & \textbf{0.497}& $0.503$ & \textbf{0.253}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Season 27, Week 8 (Bobby Bones) represents an extreme popularity--merit divergence: the percent baseline is essentially popularity-protected, whereas PAGS activates $\lambda$-damping due to a technical outlier beyond tolerance. In contrast, Season 2, Week 3 (Jerry Rice) represents moderate underperformance.
+
+\begin{equation}
+\begin{aligned}
+\widehat P_{\mathrm{elim}}^{\mathrm{pct}} &\approx 0.000 \quad &\text{(S27W8: Percent)}\\
+\widehat P_{\mathrm{elim}}^{\mathrm{PAGS}} &= 0.856 \quad &\text{(S27W8: PAGS)}\\
+\widehat P_{\mathrm{elim}}^{\mathrm{PAGS}} &= 0.247 \quad &\text{(S2W3: PAGS)}
+\end{aligned}
+\label{eq:q4_stress_probs}
+\end{equation}
+
+These contrasts indicate that damping is reserved for statistically exceptional collapse rather than routine popularity--merit tension. In summary:
+
+\begin{quote}
+\emph{PAGS does not punish popularity; it only penalizes technical incompetence that exceeds a statistical tolerance threshold.}
+\end{quote}
+
+
+\subsection{Managerial Implications}
+\label{sec:q4_mgmt}
+
+Two adoption-facing implications are derived from counterfactual evidence.
+
+The Season 27 stress test shows that the percent baseline yields $\widehat P_{\mathrm{elim}}^{\mathrm{pct}}\approx 0$, whereas PAGS yields $\widehat P_{\mathrm{elim}}^{\mathrm{PAGS}}=0.856$, mitigating reputation-damaging outcomes without discretionary producer intervention.
+
+Agency remains $\bar A=0.503$, indicating that audience votes retain a quantifiable lever. Meanwhile, $\bar D$ increases ($0.234\rightarrow 0.253$), implying that the proposed system does not collapse into a single-channel deterministic process. Together, these properties support adoption when engagement and technical credibility are jointly prioritized.
+
+
+\subsection{Boundary Analysis and Causal Limitations }
+\label{sec:q4_limits}
+
+All comparisons are conditional counterfactual simulations under fixed historical data and inferred fan support; no causal claim is made regarding ratings, long-run fairness, or behavioral adaptation under deployment.
+
+Because $\mathbf v_{s,t}$ is unobserved, all reported quantities are functionals of $\{v^{(m)}_{s,t}\}$. While $M=2000$ supports uncertainty propagation, weeks with diffuse posteriors can yield wider uncertainty bands in mechanism comparisons.
+
+The judge share $p_{i,s,t}(J)$ is computed from the weekly mean score $J_{i,s,t}$. Smaller panels increase the sampling variability of $J_{i,s,t}$ and hence $p_{i,s,t}(J)$, so a fixed $w_{s,t}$ may be mildly miscalibrated in small-panel weeks (notably Season 34 with $N_{\mathrm{judges},s,t}=2$). No explicit variance correction is imposed; in deployment, robustness can be audited by perturbing $w_{s,t}$ at a scale proportional to $N_{\mathrm{judges},s,t}^{-1/2}$.
+
+Historical eliminations arise under heterogeneous regimes (Rank/Percent/Judges’ Save); accordingly, interpretation is restricted to regime-aware reporting, and cross-era aggregation is descriptive rather than causal.
+
+Although the parameterization is low-dimensional and selected on a finite grid, estimates can be influenced by a small number of extreme weeks. Recommended audits include reporting the trigger frequency of $\lambda$-damping, the frequency of guardrail replacements, and robustness to perturbations of extreme fan-share scenarios.

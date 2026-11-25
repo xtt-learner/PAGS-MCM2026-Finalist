@@ -1,0 +1,32 @@
+# Python and local development environments
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# LaTeX build products; keep the final paper and source figures
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+
+# Historical PDFs already confirmed to differ from the final paper
+/latex项目/main.pdf
+/latex项目/main_.pdf
+
+# Large local data and model runs are maintained separately
+/data/
+/sec7_outputs/
+vote_samples.csv

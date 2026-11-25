@@ -1,0 +1,94 @@
+\section{Introduction}
+
+\subsection{Problem Background}
+
+Televised competitions that integrate expert judging with audience participation function as hybrid decision systems in which heterogeneous signals are aggregated into eliminations and final standings. Because these signals reflect different criteria and incentives, the aggregation rule itself becomes a consequential component of governance, shaping perceived legitimacy and competitive incentives alongside entertainment outcomes.
+
+A key practical constraint is partial observability. Although weekly judge scores and eliminations are typically available, audience support is often unreported and can vary in intensity between weeks and seasons. This limits direct attribution of surprising outcomes to true audience preference versus structural effects induced by the scoring rule, and it complicates producer-facing explanations of fairness.
+
+Long-running programs further exhibit regime heterogeneity: scoring procedures may change across eras, expert panels may vary in size, and limited expert interventions may be introduced to moderate extreme outcomes. These features make cross-season comparison nontrivial and require attention to how rule changes interact with uncertainty and exceptional cases.
+
+In this context, the evaluation of alternative aggregation principles is operationally relevant. Percentage-based aggregation can preserve magnitude differences and thus amplify outlier advantages, whereas ordinal ranking can compress margins and reweight influence toward relative position. Therefore, a credible assessment hinges on understanding how rule design affects technical alignment, audience agency, and the stability of eliminations under uncertainty, particularly in highly contested weeks.
+
+\subsection{Restatement of the Problem}
+
+This paper examines how a competition that combines expert judging and audience participation converts heterogeneous evaluations into eliminations and season outcomes and how alternative rules may change those outcomes across seasons.
+
+Problem One seeks to infer plausible weekly patterns of audience support that are not directly observed but are compatible with the recorded elimination history. It also requires characterizing the uncertainty of these inferences and assessing how consistently they align with the observed outcomes.
+
+Problem Two asks how different aggregation rules for judges’ assessments and audience support would affect eliminations and final placements. The task is to compare the rule regimes across seasons, evaluate whether either regime systematically increases the influence of fan preference, and examine the outcomes in high-disagreement cases. It further requires assessing how an additional judge-intervention step applied to a low-performing subset would alter results and concluding with a forward-looking recommendation on the preferred rule structure.
+
+Problem Three investigates how professional partners and celebrity attributes relate to competitive success and whether their associations differ between expert evaluations and audience support.
+
+Problem Four requires proposing an alternative scoring-and-elimination system that better satisfies explicit performance objectives for the show, with justification grounded in historical behavior.
+
+Problem Five requires synthesizing the findings into a concise producer-facing memo that provides actionable guidance consistent with the technical analysis.
+
+
+\subsection{Our Work}
+
+
+
+Our main goals are to address these issues that need to be explored: (\textbf{1}) infer latent week-level fan support consistent with observed eliminations and carry uncertainty forward via posterior diagnostics; (\textbf{2}) compare percentage- and rank-based rules through uncertainty-propagated counterfactual simulations, including regime-stratified summaries, volatility measures, and high-variance case stress tests with and without judge intervention; (\textbf{3}) separate expert scoring, conditional audience preference, and elimination risk to attribute outcome associations to professional partners and celebrity characteristics; (\textbf{4}) design and evaluate an alternative rule that improves merit alignment while preserving audience agency under historical simulation; (\textbf{5}) distill results into actionable recommendations for future seasons.
+
+
+%-----------模型假设-------------------%
+\section{Assumptions and Notations}
+
+\textbf{Asm.1 (Closed weekly risk set).}
+In each competition week, the set of active contestants is correctly identified from the records and the elimination outcomes are determined only among the contestants who are active in that week.
+
+\textbf{Asm.2 (Comparable judge scoring within a week).}
+Within the same week, judges’ scores are on a common scale after aggregation and standardization, and missing judge entries represent judge absence rather than zero-valued evaluations.
+
+\textbf{Asm.3 (Latent fan support is a weekly share).}
+Audience support in a given week is treated as a relative allocation among active contestants in that week, and the total number of votes is not required to interpret rule-based eliminations and comparisons.
+
+\textbf{Asm.4 (Rule-consistency under documented regimes).}
+Each recorded elimination week is compatible with the published scoring-and-elimination regime for that season, including documented special interventions that constrain elimination to a bottom subset.
+
+\textbf{Asm.5 (Regime-stable mapping within season--week context).}
+Conditional on season identity and week index, the mapping from observed scores and latent audience support to elimination outcomes is stable within that week, and analyzes are stratified by regime so that institutional rule changes are treated as structural differences rather than measurement noise.
+
+\textbf{Asm.6 (No leakage; conditional attribution).}
+Information from weeks after a contestant exits the competition is not used to characterize earlier-week audience support or survival risk, and partner-related effects are interpreted as conditional associations rather than causal effects.
+
+
+
+
+%-----------符号说明-------------------%
+
+\begin{table}[t]
+\centering
+\caption{Notations we use in future discussion.}
+\label{tab:notations}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{ll|ll}
+\toprule
+\textbf{Symbol} & \textbf{Description} & \textbf{Symbol} & \textbf{Description} \\
+\midrule
+$s$ & Season index & $t$ & Week index \\
+$i$ & Contestant index & $d$ & Pro-partner index \\
+$C_{s,t}$ & Active set & $m_{s,t}$ & Elimination count \\
+$E_{s,t}$ & Observed elimination set & $\mathbf v_{s,t}$ & Fan vote shares \\
+$v^{(m)}_{i,s,t}$ & Posterior draw (share) & $M$ & Posterior draws \\
+$J_{i,s,t}$ & Judge score & $\mathbf p^{J}_{s,t}$ & Normalized judge shares \\
+$\alpha$ & Dirichlet concentration & $\tau$ & Prior alignment strength \\
+$\bar{\mathbf v}_{s,t}$ & Posterior mean shares & $H_{\mathrm{norm}}(\bar{\mathbf v}_{s,t})$ & Normalized entropy \\
+$\epsilon$ & Stability pseudocount & $\mathcal{R}(s)$ & Historical regime \\
+$\mathrm{Bottom}_{m}(\cdot)$ & Select $m$ smallest & $\mathrm{Worst}_{m}(\cdot)$ & Select $m$ largest \\
+$\operatorname{rank}_{\downarrow}(\cdot)$ & Descending rank & $\mathbf r^{J}_{s,t}$ & Judge ranks \\
+$\mathbf r^{F}_{s,t}(\mathbf v)$ & Fan ranks & $E^{\mathrm{Pct}}_{s,t}(\mathbf v)$ & Elimination (Percent) \\
+$E^{\mathrm{Rank}}_{s,t}(\mathbf v)$ & Elimination (Rank) & $E^{R+\mathrm{IMS}}_{s,t}(\mathbf v)$ & Elimination (IMS) \\
+$\mathbf x_i$ & Celebrity covariates & $\mathbf z_{d,s}$ & Pro-profile covariates \\
+$Y^{J}_{i,s,t}$ & Standardized judge signal & $Y^{V(m)}_{i,s,t}$ & Standardized popularity \\
+$h^{(m)}_{i,s,t}$ & Elimination hazard & $\delta_t$ & Baseline time effect \\
+$\kappa_J$ & Hazard coef. (judge) & $\kappa_V$ & Hazard coef. (fan) \\
+$\lambda_{s,t}$ & Damping coefficient & $w_{s,t}$ & Blending weight \\
+$E^{\mathrm{PAGS}}_{s,t}(v^{(m)}_{s,t})$ & Elimination (proposed) & $P_{s,t}$ & Professionalism \\
+$A_{s,t}$ & Agency & $D_{s,t}$ & Drama \\
+\bottomrule
+\end{tabular}
+\end{table}

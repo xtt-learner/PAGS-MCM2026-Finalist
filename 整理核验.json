@@ -1,0 +1,17 @@
+{
+  "source": "E:\\PYthonCode\\2026_MCM_Problem_C",
+  "destination": "E:\\PYthonCode\\2026_MCM_Problem_C_按题整理",
+  "python_files": 41,
+  "sha256_matches": 41,
+  "section_counts": {
+    "公共": 2,
+    "其他": 2,
+    "Q1": 8,
+    "Q3": 7,
+    "Q2": 9,
+    "Q4": 8,
+    "稳健性": 5
+  },
+  "model_executed": false,
+  "paths_adapted": false
+}

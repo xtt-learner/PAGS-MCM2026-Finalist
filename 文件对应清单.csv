@@ -1,0 +1,42 @@
+﻿source_relative,destination_relative,sha256,bytes,purpose,runtime_notes
+check_data.py,公共/数据检查/check_data.py,5d41ce9dcf32aa4aed4e1ae75ed54dcc58d7b8a1df5e81f80079c1fafd096c9e,5322,检查 Q1→Q3 投票样本与清洗数据的一致性；依赖 Q1 模块。,原代码保留；运行前需复核数据路径、工作目录与输出位置；需使 Q1/代码 下的 Q1_Fan_Estimation 模块可导入
+main.py,其他/示例/main.py,e78eb0059f17f824153147068ffe0775de7c3b0b0b60c6c9bf222d8fe1e43dcb,518,PyCharm Hello World 示例，不是建模总入口。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+Q1_Fan_Estimation.py,Q1/代码/Q1_Fan_Estimation.py,12aa57e13c6c01db08493290c2e07d9b4afcc0993993504e7d1f63eac728c652,31934,粉丝投票反演；受约束后验采样、汇总与诊断。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+Q1_Q3.py,Q3/数据准备/Q1_Q3.py,f04ec5aaaf94bc3e179af6ef3b11c66b73819a2a94264544cf4410726d7832af,7372,从 Q1 导出票样本供 Q3 使用；跨题桥接，依赖 Q1 模块。,原代码保留；运行前需复核数据路径、工作目录与输出位置；需使 Q1/代码 下的 Q1_Fan_Estimation 模块可导入
+Q2_Method_Comparison.py,Q2/代码/Q2_Method_Comparison.py,21a73afb16b2123a8d37a3d3fa149bd1477abef999788bec3e6fc9b5972f4d2a,16640,Rank、Percent 和评委拯救等机制的反事实比较。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+Q3_Impact_Analysis.py,Q3/代码/Q3_Impact_Analysis.py,66f1a0592faa706134ec8cf454bedba198d5879b3315709ee01a00c7901fa9ea,45203,舞伴与选手特征影响；混合效应、多重插补、hazard 和随机森林。,原代码保留；运行前需复核数据路径、工作目录与输出位置；需使 Q1/代码 下的 Q1_Fan_Estimation 模块可导入
+Q3_NEW.py,Q3/代码/Q3_NEW.py,562bb5f2e71d65758d788db5267456552c8aa732ae9c6d8016398a63f01466c5,45326,Q3 的另一候选版本；保留原名，未认定为最终版本。,原代码保留；运行前需复核数据路径、工作目录与输出位置；需使 Q1/代码 下的 Q1_Fan_Estimation 模块可导入
+Q4_Strategy.py,Q4/代码/Q4_Strategy.py,8a820730c3a2eb6f655997e45bec7907fd2cdea33b45ee48db14d67fa62352a0,24833,替代赛制和 PAGS 仿真分析。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+Robustanalysis1.py,稳健性/代码/Robustanalysis1.py,6d3a1b97d9facbddfc895cec35970c9bdd458343264a49c67d158a54018a3572,11744,Q1 先验敏感性与 Monte Carlo 收敛检查；依赖 Q1 模块。,原代码保留；运行前需复核数据路径、工作目录与输出位置；需使 Q1/代码 下的 Q1_Fan_Estimation 模块可导入
+Robustanalysis2.py,稳健性/代码/Robustanalysis2.py,d5f6f5c26074f8e35d6cf3f34f09f990874226756f58af4139275be3635505ba,2536,读取已有 Q4 周汇总，计算 gamma 稳定性；无需重新仿真。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+Strategy.py,Q4/代码/Strategy.py,e9857eeced6dbe05819419bedcb38c7fe610993a49b0ae024b24e481f3470fdd,21334,另一赛制策略实现；保留原名，未认定与 Q4_Strategy 的版本先后。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/data_check.py,其他/待确认/data_check.py,3df503abd70ce5ebc9a8768e5964f6014fdfeefcde4a1dfa8ef7310ebe9638c9,7534,内容是 UAV/SfM 相关流程图，未确认与本竞赛有关；不是数据检查脚本。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Montecarlo.py,稳健性/绘图脚本/Montecarlo.py,f715e3460be38404f791981e6ec044b49a8de0ba207d2488d06a9b04d4f34b94,6453,绘制 Q1 Monte Carlo 收敛图；保留原有路径设置。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Phase_Stability Region.py,稳健性/绘图脚本/Phase_Stability Region.py,40f4a30a9f774d18ed3043034ea3a6d0b0e5facf4a4299bd142f21b9874f6fa6,6096,绘制 gamma 稳定性区域图。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/pre-processingdata.py,公共/数据预处理/pre-processingdata.py,3e4e51e0ce647baa298d46baaf047f18803e75505df5902b196d958422fe11b5,5350,原始竞赛数据预处理；含原项目绝对路径。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/PriorsensitivityBayesiandefense.py,稳健性/绘图脚本/PriorsensitivityBayesiandefense.py,18eae651b3b24e3f74513d49aebab3661c9d5c125a7f01abc4eac31e6cf1291e,6804,绘制 Q1 先验敏感性图。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/AcceptanceRateOverviewPlot.py,Q1/绘图脚本/AcceptanceRateOverviewPlot.py,d412bfdf16f79f20ca22c36eda9efd0feb9e82d8c2ea925e56237ab792b71612,3654,Q1 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/Comparsion_figure.py,Q1/绘图脚本/Comparsion_figure.py,cd4dc8b97f81b4238257d9609a9e5acaf7fd7aea75c06a35a31354a5462b04c1,6255,包含 Q1 秩反演和 Q2 分歧树的示意图；跨 Q1/Q2，沿用 Q1 分类。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/Figure_2.py,Q1/绘图脚本/Figure_2.py,1f840563423dfd1d0232cd0da23d0c9cfaf2e61b54fd6b3b457c96fff5078852,14015,Q1 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/plot_heatmap_overview.py,Q1/绘图脚本/plot_heatmap_overview.py,e34d1622800d2910336142f1c02f2744f49ab68ab43600b5116eca824a637463,3686,Q1 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/plot_violin.py,Q1/绘图脚本/plot_violin.py,4360b5e88186a95eb5f665047dc04f1efc554b3c4bc355ea4774a55262eede88,1776,Q1 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/Q1_visualization.py,Q1/绘图脚本/Q1_visualization.py,4d2bd7e32a8c6fe7fe8ce81d9fe7f7223332a82697fee01398004d7dacb61764,5017,Q1 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q1/Uncertainty Ridgeline.py,Q1/绘图脚本/Uncertainty Ridgeline.py,89147cd79c696580bb4df0fc356dcc706b97af26b482e380fbdbdfca661d67bd,1391,使用手工均值与标准差构造的示意脊线图，不是直接读取模型输出。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/conflict_plot.py,Q2/绘图脚本/conflict_plot.py,2ba0071314041248abe91b86c33c08a1c1ec81725a89f39bbb1c02bafe2095bd,4758,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/plot_mechanism_comparison.py,Q2/绘图脚本/plot_mechanism_comparison.py,1236b0aa964d4940c6a761a316ff1f6be476d0821e1b12ab9ef82fbeec8c0104,4009,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/Q2_figure2.py,Q2/绘图脚本/Q2_figure2.py,93bf46d9d24389699c27baa0134654a4dfc20f0eeb8e7064cae8ad7cb49abe94,5826,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/Q2_figure3.py,Q2/绘图脚本/Q2_figure3.py,869d60a47d1365482f78fa64e1d008fcb84282c3f53f1aa6349b551faaa35118,5034,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/Q2_figure4.py,Q2/绘图脚本/Q2_figure4.py,94d84ba17331688e5dd8930bb33253bb2009009ba5afd6ff9a0a6bd952f5aa5d,5557,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/Q2_figure5.py,Q2/绘图脚本/Q2_figure5.py,38cc073b2d9eb54f04a9975d6994ed064de8f7d11bc959bb68f72d39d477a184,5091,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/Q2_figure6.py,Q2/绘图脚本/Q2_figure6.py,d481a60fdcdb8d4c593a4ac058d6bbd12c170e096e1733605bea93cac7a7d861,4451,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q2/tree_divergence.py,Q2/绘图脚本/tree_divergence.py,f41be75004ebce14f47f314befea5b1bba7b45315a416d26506f54a90818ff64,4119,Q2 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q3/clean_04_file.py,Q3/绘图脚本/clean_04_file.py,dfaa39dc3966514792bb49039dbbae7207e1f404c45e0306255a19b28f722015,1989,清理 Q3 固定效应输出，生成绘图使用的派生 CSV。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q3/Pipeline.py,Q3/绘图脚本/Pipeline.py,250003efce4e95d1c8ad5e9cb53f435d6fb8f12d94a21886704e94341d3f7782,5767,Q3 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q3/The Age Scissors.py,Q3/绘图脚本/The Age Scissors.py,08e71d0720931f5acaa86d8d8d27151e38f2f21948b87a3cb2ade13572ce16dd,1322,使用手工函数构造年龄剪刀差示意，不是直接读取拟合结果。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q3/Threechannelfigure.py,Q3/绘图脚本/Threechannelfigure.py,c01bb8ec1d398c8892009d50d2c0886570ea50ee9a2c47738ea020174a59b098,4901,Q3 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q4/plot_figure.py,Q4/绘图脚本/plot_figure.py,eb0b72ce442e1f0a180049d83e9778526adafaba90de46e30b7eba2392181aef,25560,Q4 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q4/plot_figure2.py,Q4/绘图脚本/plot_figure2.py,5da5e55e6e3151079b761e298fa43495ff21402fd30505906b6c79aa6f4ead58,25821,Q4 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q4/plot_figure3.py,Q4/绘图脚本/plot_figure3.py,bf79de178de1fb4deb888f2c830c0f442a4da34993202cc2e55cb4cb0ec45d38,24869,Q4 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q4/plot_figure4.py,Q4/绘图脚本/plot_figure4.py,d10dfea5c57f6c0cbeb75ac77e7a24c4f4bfae027e07386cf46966f0fccc82fb,23370,Q4 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q4/plot_figure5.py,Q4/绘图脚本/plot_figure5.py,fa6013b81904a9555b31cbf0ccd7cf208282738d95e627dc98b41ab86b5465ad,24080,Q4 配套绘图或结果展示脚本；保留既有实现与原文件名。,原代码保留；运行前需复核数据路径、工作目录与输出位置
+utils/Q4/Q4_process_data.py,Q4/数据准备/Q4_process_data.py,3a004c660f7272ce7290729154dbace72396e6ef8ad428277f16e44f515c054e,6399,从 Q1 后验生成 Q4 使用的票样本文件；依赖 Q1 模块。,原代码保留；运行前需复核数据路径、工作目录与输出位置；需使 Q1/代码 下的 Q1_Fan_Estimation 模块可导入

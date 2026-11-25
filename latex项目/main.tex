@@ -1,0 +1,161 @@
+
+\PassOptionsToClass{10pt}{article}
+\documentclass{mcmthesis}
+\usepackage{amsmath, amssymb, amsfonts} % 基础数学包
+ \usepackage{dsfont}                      
+ \usepackage{graphicx}                   % 支持图片插入
+ \usepackage{booktabs}                   % 支持三线表 
+ \usepackage{float}         
+ \usepackage[font=small,labelfont=bf]{caption}
+\usepackage{microtype}
+\emergencystretch=2em
+
+% ---- global space tightening (safe, content-neutral) ----
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+
+\usepackage[font=small,labelfont=bf]{caption}
+\captionsetup{skip=2pt}
+
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.8ex}{0.4ex}
+\titlespacing*{\subsection}{0pt}{0.6ex}{0.3ex}
+
+
+ % 支持图片位置固定 [H]
+ \usepackage[section]{placeins} % prevent floats crossing section boundaries
+\usepackage{tocloft}
+
+% =======================================================
+% 【最终修正版】目录样式设置 (保留三级标题)
+% =======================================================
+% 1. 让目录标题 (Contents) 居中
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+% 2. 让一级标题 (Section) 强制显示引导点
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% 3. 【关键修复】压缩行间距
+% 减小目录标题下方距离
+\setlength{\cftaftertoctitleskip}{5pt} 
+
+% 减小一级标题 (Section) 之前的垂直距离
+
+
+% 减小二级标题 (Subsection) 之前的垂直距离 (紧挨着)
+\setlength{\cftbeforesubsecskip}{0pt}
+
+% 减小三级标题 (Subsubsection) 之前的垂直距离 (紧挨着)
+\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% 4. 控制目录深度 (改为 3，即显示到 4.1.1)
+\setcounter{tocdepth}{3}
+% =======================================================
+
+% 3. (可选) 如果还不行，请取消下面这行的注释，强制设定点间距为 1
+% \renewcommand{\cftsecdotsep}{1} 
+% =======================================================
+
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{{./}{./figures/}{./figure/}{./fig/}{./img/}{./image/}{./picture/}}
+% --- 请将此段代码放入 main.tex 的导言区 (usepackage 之后) ---
+\usepackage{amsthm} % 数学定理包
+\theoremstyle{definition} % 设置样式
+\newtheorem{definition}{Definition} % 定义 "Definition" 环境
+\newtheorem{theorem}{Theorem}       % 定义 "Theorem" 环境
+\newtheorem{axiom}{Assumption}      % 定义 "Assumption" 环境
+% -----------------------------------------------------------
+ % 当使用 CTeX 套装时请注释上一行使用该行的设置
+\mcmsetup{tstyle=\color{red}\bfseries,%修改题号，队号的颜色和加粗显示，黑色可以修改为 black
+tcn = 2619541, problem =C, %修改队号，参赛题号
+sheet = true, titleinsheet = true, keywordsinsheet = true,
+titlepage = false, abstract = true}
+\usepackage{float}
+%四款字体可以选择
+\usepackage{times}
+%\usepackage{newtxtext}
+%\usepackage{palatino}
+%\usepackage{txfonts}
+
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}  %首行缩进，注释掉，首行就不再缩进。
+\usepackage{lipsum}
+
+%\usepackage{ctex}
+
+\title{PAGS: Auditing DWTS Voting Aggregation Rules via Inverse Reconstruction and Counterfactual Simulation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+\setlength{\cftaftertoctitleskip}{5pt}
+\setlength{\cftbeforesecskip}{5pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+
+
+\input{0.abstract}
+
+\maketitle
+%\setcounter{tocdepth}{2} % 只显示到二级标题 (Section 和 Subsection)，隐藏三级细节
+%\tableofcontents
+\tableofcontents
+%\setlength{\cftparskip}{10pt}    % 目录项内部的行间距，0pt为紧凑，可改5pt/10pt
+\setlength{\cftbeforesecskip}{3pt} % 一级标题（章节）之间的垂直间距，按需调整
+%\tableofcontents
+
+\newpage
+\input{1.part-1}
+
+
+\input{2.part-2}
+
+
+
+\input{稳健性}
+
+
+\input{Strengths and Weaknesses}
+
+\newpage
+\input{6.memo}
+
+
+
+\clearpage
+\input{ref}
+
+%\clearpage
+%\input{5.appendix}
+
+\newpage
+\input{4.AI}
+
+
+
+
+\end{document}
+

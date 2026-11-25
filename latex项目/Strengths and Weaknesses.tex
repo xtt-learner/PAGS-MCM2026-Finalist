@@ -1,0 +1,64 @@
+% ============================================================
+% Model Evaluation: Strengths and Weaknesses (Concise Version)
+% ============================================================
+\section{Strengths and Limitations}
+\label{sec:evaluation}
+
+% ============================================================
+% Model Evaluation: Strengths and Weaknesses (Compressed Layout)
+% ============================================================
+
+
+
+% 开启小字号模式，并缩减段后间距
+\begingroup
+
+\setlength{\parskip}{0pt} 
+
+We assess the validity of our framework by evaluating its operational identifiability, structural consistency, and interpretability under partial observability.
+
+%\vspace{-0.8em} % 强制缩减标题与列表的距离
+\noindent\textbf{Strengths.}
+\begin{enumerate}
+    % 强制压缩列表内部间距
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+    
+    \item \textbf{Unified Uncertainty Propagation.} 
+    By propagating the full posterior distribution ($M=2000$ draws) rather than point estimates, our framework ensures operational identifiability and avoids the false precision of deterministic models ($\mathrm{PPC} \approx 0.905$).
+
+    %\item \textbf{Structural Isolation via Counterfactuals.} 
+    %Our within-week design isolates the aggregation rule as the sole independent variable, confirming that observed outcome divergences are inherent systemic properties rather than random anomalies.
+
+    \item \textbf{Robust Dual-Signal Attribution.} 
+    The hazard model effectively decouples meritocratic (judge) from democratic (fan) signals, with parametric findings validated by the consistent feature rankings of nonparametric random forests.
+
+    \item \textbf{Stress-Tested Mechanism Design.} 
+    The proposed PAGS architecture is validated against historical "worst-case" controversies, demonstrating quantifiable fairness improvements without sacrificing commercial audience agency.
+\end{enumerate}
+
+%\vspace{-0.8em} % 强制缩减段落间距
+\noindent\textbf{Limitations.}
+\begin{enumerate}
+    % 强制压缩列表内部间距
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+
+    \item \textbf{Dependence on Latent Inference.} 
+    All findings remain conditional on the inverse reconstruction; weeks with sparse data or weak correlations yield diffuse posteriors that inherently widen downstream uncertainty bands.
+
+    \item \textbf{Static Behavioral Assumption.} 
+    The counterfactuals assume a \textit{ceteris paribus} environment, isolating mechanical effects while neglecting potential long-term game-theoretic adaptations by judges or contestants.
+
+    \item \textbf{Parametric Sensitivity.} 
+    The proposed system relies on tuned damping parameters, which require continuous auditing to ensure robustness against rare, extreme voting distributions in future seasons.
+\end{enumerate}
+\vspace{1ex}
+\noindent\textbf{Conclusion.}  
+
+Overall, this work establishes an uncertainty-aware audit framework for DWTS-style hybrid decision rules under unobserved voting. With regime-consistent vote reconstruction (PPC $=90.5\%$), quantified rule-induced volatility ($26\%$ of historical weeks), and cross-model driver-invariance evidence, we provide a systematic diagnostic of the conditions and origins of legitimacy risks. PAGS maintains a near-neutral performance baseline ($P \approx 0.5$) to preserve audience agency while enforcing a transparent circuit-breaker that corrects extreme popularity--merit divergences (e.g., the Bobby Bones corner case), and the producer-facing memo translates these audit findings into deployable guidance.
+
+
+\endgroup

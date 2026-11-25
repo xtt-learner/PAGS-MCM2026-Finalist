@@ -1,0 +1,4 @@
+# Preserve exact bytes of archived sources and SHA-256 manifests across platforms.
+* -text
+*.png binary
+*.pdf binary

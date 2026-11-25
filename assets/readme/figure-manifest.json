@@ -1,0 +1,42 @@
+[
+  {
+    "source": "latex项目/figures/f1.png",
+    "destination": "assets/readme/inverse-reconstruction.png",
+    "sha256": "a30192b7bbce4bc65a186b4746a98e665f0a085924cb1ecccc6f760f9eaaecad"
+  },
+  {
+    "source": "latex项目/figures/Q1figure2.png",
+    "destination": "assets/readme/posterior-diagnostics.png",
+    "sha256": "72a01488f419d31f1a40020817863c7f6aecf98796ca9bce47b7fc0e70b5b878"
+  },
+  {
+    "source": "latex项目/figures/Q2.4.png",
+    "destination": "assets/readme/rule-disagreement.png",
+    "sha256": "567cb0852d5ad99c648da5dfbae6e652bc6b2478015265ff51c02e1246f3b116"
+  },
+  {
+    "source": "latex项目/figures/risk_conflict_map.png",
+    "destination": "assets/readme/risk-conflict-map.png",
+    "sha256": "82d425926dd2441cc3de1978a5e7b86258632d96ff207980beb4c91df4cd7f5d"
+  },
+  {
+    "source": "latex项目/figures/Q3.1.png",
+    "destination": "assets/readme/channel-effects.png",
+    "sha256": "ad326cc19cb249f54a9d83c6fef3dac0472ed88d29f8d9acac1e914a48b678f9"
+  },
+  {
+    "source": "latex项目/figures/Q3.2.png",
+    "destination": "assets/readme/partner-value-add.png",
+    "sha256": "db5d0dea85b0309a518251dabac2a6943e52ec3f88468668968248895a5012cf"
+  },
+  {
+    "source": "latex项目/figures/Q3.3.png",
+    "destination": "assets/readme/elimination-hazard.png",
+    "sha256": "4cc1f066482d42fa39494b9c8c0b677f95ab759c2301888a4835542e357fc032"
+  },
+  {
+    "source": "latex项目/figures/Q3.4.png",
+    "destination": "assets/readme/feature-importance.png",
+    "sha256": "48fffe6fe4e9f53fa6aec8d5aa0dfa4fa82ceb3dba28958c6eb79089eea75316"
+  }
+]

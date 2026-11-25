@@ -1,0 +1,108 @@
+% ============================================================
+% 6.memo.tex  (Embedded Memorandum for MCM/ICM 2026 Problem C)
+% Usage in main.tex: \clearpage \input{6.memo.tex} \clearpage
+% NOTE: This file contains NO preamble and NO \documentclass.
+% ============================================================
+
+% --------- page break + optional page style ----------
+
+\thispagestyle{empty} % 如你希望保留页眉页脚，可删掉这一行
+\setlength{\fboxsep}{6pt}
+\noindent\fbox{%
+\begin{minipage}{0.97\textwidth}
+\begingroup
+\footnotesize
+
+
+% --------- Title ----------
+\vspace{1em} % ↑ 增大标题到边框上边距（可调：0.4em~1.0em）
+\begin{center}
+    {\Large\bfseries MEMORANDUM}
+\end{center}
+\vspace{-1.7em} % ↓ 减小标题下方间距（可调：-0.2em~-0.6em）
+
+
+\vspace{0.3em}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{0.6em}
+
+% --------- Header block (To/From/Date/Subject + optional CC/Attachments) ----------
+% 只用 tabular（不依赖 tabularx），确保最大兼容性
+\noindent\begin{tabular}{@{}p{0.14\textwidth}p{0.84\textwidth}@{}}
+
+\textbf{To:}      & Producers, \textit{Dancing with the Stars} (DWTS) \\[0.25em]
+
+\textbf{From:}    & MCM/ICM 2026 Team \#\underline{2619541} (Problem C) \\[0.25em]
+
+\textbf{Date:}    & 2 February 2026 \\[0.25em]
+
+\textbf{Subject:} & Impact of Combining Judge Scores and Fan Votes: Evidence and Recommendations Based on Q1--Q4 \\[0.25em]
+
+%\textbf{CC:}      & Executive Producer / Voting Operations Partner / Rules \& Compliance Lead (optional) \\[0.25em]
+\textbf{Attach:}  &  A. One-page rule comparison; B. Parameter notes; C. Case review of controversial weeks
+\end{tabular}
+
+\vspace{0.6em}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{0.8em}
+
+% ============================================================
+% Body (Memo should be non-technical but evidence-backed)
+% ============================================================
+
+\noindent\textbf{Purpose.}
+This memorandum summarizes how alternative vote-combination rules change DWTS outcomes and recommends a transparent system that balances competitive credibility and audience agency.
+
+\vspace{0.4em}
+
+\noindent\textbf{Evidence base (Q1--Q4).}
+Because fan vote counts are unobserved, we infer rule-consistent fan vote shares (Q1), run week-level counterfactual comparisons across Rank/Percent and save variants (Q2–Q3), and test an interpretable monotone safeguard against extreme vote concentration (Q4).
+
+\vspace{0.4em}
+
+\noindent\textbf{Key findings.}
+\begin{itemize}
+    \item \textbf{Aggregation choice meaningfully changes eliminations.}
+    Switching between rank-based aggregation and percent-based aggregation changes the eliminated contestant in abou \textbf{26\%} of elimination weeks.
+
+    \item \textbf{Percent-based aggregation better reflects overall audience ordering.}
+    Percent-based aggregation better matches the fan-support ordering (\textbf{0.765} vs \textbf{0.678} average rank-correlation).
+
+    \item \textbf{Both channels matter; over-correcting either direction creates risk.}
+    Both judge performance and fan support materially affect elimination risk; extreme tilts toward either channel increase fairness and credibility concerns.
+
+    \item \textbf{Judges’ Save is best treated as an exception-handling tool, not a substitute for transparent rules.}
+    A Save mechanism can protect strong technical performers when short-term voting fluctuations place them at risk, but discretionary intervention can also increase perceived unfairness if criteria are not explicit and stable.
+\end{itemize}
+
+\vspace{0.4em}
+
+\noindent\textbf{Recommendations for future seasons.}
+\begin{enumerate}
+    \item \textbf{Use Percent-based aggregation as the default backbone.}
+    It more directly translates audience support into outcomes and is easier to explain to viewers, reducing “black-box” perceptions.
+
+    \item \textbf{Add a pre-announced safeguard against extreme vote-lock-in.}
+    When fan votes become unusually concentrated, apply a monotone compression that \emph{preserves ordering} but reduces excessive margins. This mitigates cases where performance becomes effectively irrelevant due to outsized vote blocs.
+
+    \item \textbf{Adopt stage-dependent weighting to reflect season goals.}
+    Use relatively higher audience influence early to encourage engagement, and gradually increase the role of technical judging later to strengthen the credibility of finalists and the champion.
+
+    \item \textbf{If keeping Judges’ Save, constrain and standardize it.}
+    Limit its scope (e.g., only within Bottom-2), specify when it can be used (e.g., mid-to-late season), and tie it to transparent performance-based criteria. This preserves its “professional safeguard” function while reducing perceived arbitrariness.
+\end{enumerate}
+
+\vspace{0.4em}
+
+\noindent\textbf{Action requested.}
+We recommend deciding and announcing before the season begins: (1) Percent backbone, (2) safeguard trigger/strength parameters, and (3) whether Judges’ Save is used and, if so, its constraints and criteria.
+
+\vspace{0.4em}
+
+\noindent\textbf{Bottom line.}
+A Percent backbone with a published safeguard and stage-dependent weights preserves engagement while reducing extreme outcomes; any Judges’ Save should be strictly rule-bound.
+
+\endgroup
+\end{minipage}}
+
+% --------- end of memo ----------
